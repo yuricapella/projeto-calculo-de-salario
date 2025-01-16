@@ -5,23 +5,24 @@ public class CalculoDeSalario {
     public static void main(String[] args) {
         double[] salarios = obterSalarios();
         double[] descontoInss = obterDescontoInss(salarios);
-        
-        System.out.printf("Salário 1: %.2f\nSalário 2: %.2f\nSalário 3: %.2f\nSalário 4: %.2f\nSalário 5: %.2f\n", salarios[0], salarios[1],salarios[2],salarios[3],salarios[4]);
-        System.out.printf("Desconto 1: %.2f\nDesconto 2: %.2f\nDesconto 3: %.2f\nDesconto 4: %.2f\nDesconto 5: %.2f\n",descontoInss[0],descontoInss[1],descontoInss[2],descontoInss[3],descontoInss[4]);
+        double[] descontoImpostoDeRenda = obterDescontoImpostoDeRenda(salarios);
+
+        for (int i = 0; i < salarios.length; i++) {
+            System.out.printf("Salário %d: %.2f\nDesconto Inss de %.2f%%\nDesconto Imposto de Renda de %.2f%%\n---------------\n",i+1, salarios[i],descontoInss[i],descontoImpostoDeRenda[i]);
+        }
     }
 
     public static double[] obterSalarios() {
         Scanner entrada = new Scanner(System.in);
         double[] salarios = new double[5];
 
-        System.out.println("Digite os 5 salários: (Exemplo: 800.53 1330.23 2500.77 3877.93 1212");
+        System.out.println("Digite os 5 salários: (Exemplo: 1212 2103.23 3200.77 4350.93 7500)");
         String[] entradaSalarios = entrada.nextLine().split(" ");
         entrada.close();
 
         for(int i = 0; i < entradaSalarios.length; i++){
             salarios[i] = Double.parseDouble(entradaSalarios[i]);
         }
-
         return salarios;
     }
 
@@ -30,13 +31,32 @@ public class CalculoDeSalario {
         
         for(int i = 0; i < salarios.length; i++){
             if(salarios[i] <= 1212){
-                descontos[i] += 0.075;
-            }else if (salarios[i] > 1212.01 && salarios[i] <= 2427.35) {
-                descontos[i] += 0.09;
-            }else if (salarios[i] > 2427.36 && salarios[i] <= 3641.03) {
-                descontos[i] += 0.12;
+                descontos[i] += 7.5;
+            }else if (salarios[i] >= 1212.01 && salarios[i] <= 2427.35) {
+                descontos[i] += 9;
+            }else if (salarios[i] >= 2427.36 && salarios[i] <= 3641.03) {
+                descontos[i] += 12;
             }else{
-                descontos[i] += 0.14;
+                descontos[i] += 14;
+            }
+        }
+        return descontos;
+    }
+
+    public static double[] obterDescontoImpostoDeRenda(double[] salarios){
+        double[] descontos = new double[salarios.length];
+
+        for(int i = 0; i < salarios.length; i++){
+            if(salarios[i] <= 1903.98){
+                descontos[i] += 0;
+            }else if (salarios[i] >= 1903.99 && salarios[i] <= 2826.65) {
+                descontos[i] += 7.5;
+            }else if (salarios[i] >= 2826.66 && salarios[i] <= 3751.05) {
+                descontos[i] += 15;
+            }else if (salarios[i] >= 3751.06 && salarios[i] <= 4664.68) {
+                descontos[i] += 22.50;
+            }else{
+                descontos[i] += 27.50;
             }
         }
         return descontos;
