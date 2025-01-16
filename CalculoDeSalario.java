@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
 public class CalculoDeSalario {
-    // A versão atual está simplificada sem validação de entrada, conforme enunciado do projeto.
     public static void main(String[] args) {
-        double[] salarios = obterSalarios();
-        double[] descontoInss = obterDescontoInss(salarios);
-        double[] descontoImpostoDeRenda = obterDescontoImpostoDeRenda(salarios);
+        double[] salarioBruto = obterSalarios();
+        double[] descontoInss = obterDescontoInss(salarioBruto);
+        double[] descontoImpostoDeRenda = obterDescontoImpostoDeRenda(salarioBruto);
+        double[] salarioLiquido = calcularSalarioLiquido(salarioBruto, descontoInss, descontoImpostoDeRenda);
 
-        for (int i = 0; i < salarios.length; i++) {
-            System.out.printf("Salário %d: %.2f\nDesconto Inss de %.2f%%\nDesconto Imposto de Renda de %.2f%%\n---------------\n",i+1, salarios[i],descontoInss[i],descontoImpostoDeRenda[i]);
+        for (int i = 0; i < salarioBruto.length; i++) {
+            System.out.printf("Salário bruto %d: %.2f\nDesconto Inss: %.2f\nDesconto Imposto de Renda: %.2f\nSalário liquido: %.2f\n---------------\n",i+1, salarioBruto[i],descontoInss[i],descontoImpostoDeRenda[i],salarioLiquido[i]);
         }
     }
 
@@ -18,47 +18,57 @@ public class CalculoDeSalario {
 
         System.out.println("Digite os 5 salários: (Exemplo: 1212 2103.23 3200.77 4350.93 7500)");
         String[] entradaSalarios = entrada.nextLine().split(" ");
-        entrada.close();
+        System.out.println("---------------");
 
         for(int i = 0; i < entradaSalarios.length; i++){
             salarios[i] = Double.parseDouble(entradaSalarios[i]);
         }
+        entrada.close();
         return salarios;
     }
 
-    public static double[] obterDescontoInss(double[] salarios){
-        double[] descontos = new double[salarios.length];
+    public static double[] obterDescontoInss(double[] salarioBruto){
+        double[] descontos = new double[salarioBruto.length];
         
-        for(int i = 0; i < salarios.length; i++){
-            if(salarios[i] <= 1212){
-                descontos[i] += 7.5;
-            }else if (salarios[i] >= 1212.01 && salarios[i] <= 2427.35) {
-                descontos[i] += 9;
-            }else if (salarios[i] >= 2427.36 && salarios[i] <= 3641.03) {
-                descontos[i] += 12;
+        for(int i = 0; i < salarioBruto.length; i++){
+            if(salarioBruto[i] <= 1212){
+                descontos[i] += (salarioBruto[i] * 0.075);
+            }else if (salarioBruto[i] >= 1212.01 && salarioBruto[i] <= 2427.35) {
+                descontos[i] += (salarioBruto[i] * 0.09);
+            }else if (salarioBruto[i] >= 2427.36 && salarioBruto[i] <= 3641.03) {
+                descontos[i] += (salarioBruto[i] * 0.12);
             }else{
-                descontos[i] += 14;
+                descontos[i] += (salarioBruto[i] * 0.14);
             }
         }
         return descontos;
     }
 
-    public static double[] obterDescontoImpostoDeRenda(double[] salarios){
-        double[] descontos = new double[salarios.length];
+    public static double[] obterDescontoImpostoDeRenda(double[] salarioBruto){
+        double[] descontos = new double[salarioBruto.length];
 
-        for(int i = 0; i < salarios.length; i++){
-            if(salarios[i] <= 1903.98){
+        for(int i = 0; i < salarioBruto.length; i++){
+            if(salarioBruto[i] <= 1903.98){
                 descontos[i] += 0;
-            }else if (salarios[i] >= 1903.99 && salarios[i] <= 2826.65) {
-                descontos[i] += 7.5;
-            }else if (salarios[i] >= 2826.66 && salarios[i] <= 3751.05) {
-                descontos[i] += 15;
-            }else if (salarios[i] >= 3751.06 && salarios[i] <= 4664.68) {
-                descontos[i] += 22.50;
+            }else if (salarioBruto[i] >= 1903.99 && salarioBruto[i] <= 2826.65) {
+                descontos[i] += (salarioBruto[i] * 0.075);
+            }else if (salarioBruto[i] >= 2826.66 && salarioBruto[i] <= 3751.05) {
+                descontos[i] += (salarioBruto[i] * 0.15);
+            }else if (salarioBruto[i] >= 3751.06 && salarioBruto[i] <= 4664.68) {
+                descontos[i] += (salarioBruto[i] * 0.2250);
             }else{
-                descontos[i] += 27.50;
+                descontos[i] += (salarioBruto[i] * 0.2750);
             }
         }
         return descontos;
+    }
+
+    public static double[] calcularSalarioLiquido(double[] salarioBruto,double[] descontoInss,double[] descontoImpostoDeRenda) {
+        double[] salarioLiquido = new double[salarioBruto.length];
+
+        for(int i = 0; i < salarioBruto.length; i++){
+            salarioLiquido[i] += (salarioBruto[i] - descontoInss[i] - descontoImpostoDeRenda[i]);
+        }
+        return salarioLiquido;
     }
 }
