@@ -29,16 +29,12 @@ public class CalculoDeSalario {
 
     public static double[] obterDescontoInss(double[] salarioBruto){
         double[] descontos = new double[salarioBruto.length];
-        
-        for(int i = 0; i < salarioBruto.length; i++){
-            if(salarioBruto[i] <= 1212){
-                descontos[i] += (salarioBruto[i] * 0.075);
-            }else if (salarioBruto[i] >= 1212.01 && salarioBruto[i] <= 2427.35) {
-                descontos[i] += (salarioBruto[i] * 0.09);
-            }else if (salarioBruto[i] >= 2427.36 && salarioBruto[i] <= 3641.03) {
-                descontos[i] += (salarioBruto[i] * 0.12);
-            }else{
-                descontos[i] += (salarioBruto[i] * 0.14);
+        for (int i = 0; i < salarioBruto.length; i++) {
+            for (DescontoInss faixa : DescontoInss.values()) {
+                if (salarioBruto[i] <= faixa.getValor()) {
+                    descontos[i] = salarioBruto[i] * (faixa.getDesconto() / 100);
+                    break;
+                }
             }
         }
         return descontos;
@@ -48,17 +44,12 @@ public class CalculoDeSalario {
         double[] descontos = new double[salarioBruto.length];
 
         for(int i = 0; i < salarioBruto.length; i++){
-            if(salarioBruto[i] <= 1903.98){
-                descontos[i] += 0;
-            }else if (salarioBruto[i] >= 1903.99 && salarioBruto[i] <= 2826.65) {
-                descontos[i] += (salarioBruto[i] * 0.075);
-            }else if (salarioBruto[i] >= 2826.66 && salarioBruto[i] <= 3751.05) {
-                descontos[i] += (salarioBruto[i] * 0.15);
-            }else if (salarioBruto[i] >= 3751.06 && salarioBruto[i] <= 4664.68) {
-                descontos[i] += (salarioBruto[i] * 0.2250);
-            }else{
-                descontos[i] += (salarioBruto[i] * 0.2750);
-            }
+           for(DescontoImpostoDeRenda faixa : DescontoImpostoDeRenda.values()){
+                if (salarioBruto[i] <= faixa.getValor()) {
+                    descontos[i] = salarioBruto[i] * (faixa.getDesconto() / 100);
+                    break;
+                }
+           }
         }
         return descontos;
     }
