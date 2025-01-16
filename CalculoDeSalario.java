@@ -1,32 +1,31 @@
 import java.util.Scanner;
 
 public class CalculoDeSalario {
-    //Pensei em fazer tratamento de erros porém como ainda não chegamos la e o projeto não pediu,
-    // Deixei simples mesmo.
+    // A versão atual está simplificada sem validação de entrada, conforme enunciado do projeto.
     public static void main(String[] args) {
-        double[] salarios = recebeSalario();
-        double[] porcentagemDescontoInss = descontoInss(salarios);
+        double[] salarios = obterSalarios();
+        double[] descontoInss = obterDescontoInss(salarios);
         
         System.out.printf("Salário 1: %.2f\nSalário 2: %.2f\nSalário 3: %.2f\nSalário 4: %.2f\nSalário 5: %.2f\n", salarios[0], salarios[1],salarios[2],salarios[3],salarios[4]);
-        System.out.printf("Desconto 1: %.2f\nDesconto 2: %.2f\nDesconto 3: %.2f\nDesconto 4: %.2f\nDesconto 5: %.2f\n",porcentagemDescontoInss[0],porcentagemDescontoInss[1],porcentagemDescontoInss[2],porcentagemDescontoInss[3],porcentagemDescontoInss[4]);
+        System.out.printf("Desconto 1: %.2f\nDesconto 2: %.2f\nDesconto 3: %.2f\nDesconto 4: %.2f\nDesconto 5: %.2f\n",descontoInss[0],descontoInss[1],descontoInss[2],descontoInss[3],descontoInss[4]);
     }
 
-    public static double[] recebeSalario() {
+    public static double[] obterSalarios() {
         Scanner entrada = new Scanner(System.in);
-        double[] salariosDouble = new double[5];
+        double[] salarios = new double[5];
 
         System.out.println("Digite os 5 salários: (Exemplo: 800.53 1330.23 2500.77 3877.93 1212");
-        String[] salariosString = entrada.nextLine().split(" ");
-
-        for(int i = 0; i < salariosString.length; i++){
-            salariosDouble[i] = Double.parseDouble(salariosString[i]);
-        }
+        String[] entradaSalarios = entrada.nextLine().split(" ");
         entrada.close();
 
-        return salariosDouble;
+        for(int i = 0; i < entradaSalarios.length; i++){
+            salarios[i] = Double.parseDouble(entradaSalarios[i]);
+        }
+
+        return salarios;
     }
 
-    public static double[] descontoInss(double[] salarios){
+    public static double[] obterDescontoInss(double[] salarios){
         double[] descontos = new double[salarios.length];
         
         for(int i = 0; i < salarios.length; i++){
@@ -42,7 +41,4 @@ public class CalculoDeSalario {
         }
         return descontos;
     }
-
-
-
 }
