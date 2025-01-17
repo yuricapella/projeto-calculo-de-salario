@@ -1,4 +1,4 @@
-# Projeto de Cálculo de Salários Líquidos
+# Projeto de Cálculo de Salários
 
 ## Descrição
 
