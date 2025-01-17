@@ -22,7 +22,6 @@ Este projeto tem como objetivo obter os salários brutos de 5 funcionários, lev
 ### Pré-requisitos
 
 - JDK 8 ou superior instalado.
-- Editor de código (ex: IntelliJ, Eclipse, VSCode).
 
 ### Passos
 
