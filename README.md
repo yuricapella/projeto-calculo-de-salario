@@ -2,7 +2,16 @@
 
 ## Descrição
 
-Este projeto tem como objetivo obter os salários brutos de 5 funcionários, levando em consideração os descontos de INSS e Imposto de Renda e calcular os salários liquidos. O programa foi desenvolvido como parte da disciplina **Lógica de Programação I** no programa **Desenvolva+** da Ada & Mercado Livre.
+Este projeto recebe os salários brutos de 5 funcionários e calcula:
+- O valor do INSS descontado de cada salário.
+- O valor do Imposto de Renda descontado de cada salário.
+- O salário líquido após os descontos.
+
+O desenvolvimento foi realizado como atividade prática da disciplina Lógica de Programação I, no programa Desenvolva+ promovido pela Ada & Mercado Livre.
+
+## Enunciado do Projeto
+
+Para detalhes completos sobre o enunciado, consulte o arquivo [ENUNCIADO.md](ENUNCIADO.md).
 
 ## Funcionalidades
 
