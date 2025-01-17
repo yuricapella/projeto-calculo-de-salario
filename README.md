@@ -21,8 +21,8 @@ Este projeto tem como objetivo obter os salários brutos de 5 funcionários, lev
 
 ### Pré-requisitos
 
-- JDK 8 ou superior instalado.
-
+- **JDK 11 ou superior instalado**  
+  *Nota*: O projeto pode ser compilado com JDK 8 ou 10. No entanto, recomenda-se o uso de JDK 11 ou superior para evitar problemas relacionados ao encoding de caracteres.
 ### Passos
 
 1. Clone o repositório:
