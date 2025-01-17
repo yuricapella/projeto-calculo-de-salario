@@ -1,8 +1,8 @@
-# Projeto de Cálculo de Salários
+# Cálculo de Salários
 
 ## Descrição
 
-Este projeto tem como objetivo calcular os salários de 5 funcionários, levando em consideração os descontos de INSS e Imposto de Renda, de acordo com a legislação vigente. O programa foi desenvolvido como parte da disciplina **Lógica de Programação I** no programa **Desenvolva+** da Ada & Mercado Livre.
+Este projeto tem como objetivo obter os salários brutos de 5 funcionários, levando em consideração os descontos de INSS e Imposto de Renda e calcular os salários liquidos. O programa foi desenvolvido como parte da disciplina **Lógica de Programação I** no programa **Desenvolva+** da Ada & Mercado Livre.
 
 ## Funcionalidades
 
@@ -49,7 +49,7 @@ Este projeto tem como objetivo calcular os salários de 5 funcionários, levando
 
 ## Estrutura do Projeto
 
-- **CalculoDeSalarios.java**: Classe principal que contém a lógica para obter salários, calcular descontos e exibir resultados.
+- **CalculoDeSalarios.java**: Classe principal que contém a lógica para obter salários brutos, calcular descontos e calcular salários liquidos e exibir resultados.
 - **TabelaDescontosInss.java**: Enum que define as faixas salariais e as porcentagens de desconto do INSS.
 - **TabelaDescontosImpostoDeRenda.java**: Enum que define as faixas salariais e as porcentagens de desconto do Imposto de Renda.
   
